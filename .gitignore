@@ -1,2 +1,5 @@
 # Ignore any executables
 *.exe
+
+# Ignore config file
+/src/archivist/config.json
