@@ -116,17 +116,7 @@ void setup(){
         }
 
     }
-    // globalConfig is populated
-
-    cout << globalConfig.apiURL << "\n"
-         << globalConfig.recordPath << "\n"
-         << globalConfig.processPath << "\n";  
-
-    signal(SIGINT, safeExit);
-
-    cout << "VATPlayback Archivist v" + VP_VERSION + "\n"
-              << "Copyright (C) 2025 DIY Labs\n"
-              << "Licensed under GNU GPL V3. Read more at " + VP_LICENSE_URL + "\n";
+    // globalConfig is populated at this point
 
 }
 
@@ -136,7 +126,7 @@ void processArguments(int argc, char *argv[]){
         printHelp();
         safeExit(SIGINT);
     }
-
+    
 }
 
 void printHelp(){
