@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="vp_logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#000000"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.80087682"
+     inkscape:cx="413.92133"
+     inkscape:cy="509.44164"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient11349">
+      <stop
+         style="stop-color:#2483c5;stop-opacity:1;"
+         offset="0"
+         id="stop11345" />
+      <stop
+         style="stop-color:#29b473;stop-opacity:1;"
+         offset="1"
+         id="stop11347" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2379">
+      <stop
+         style="stop-color:#2483c5;stop-opacity:1;"
+         offset="0"
+         id="stop2375" />
+      <stop
+         style="stop-color:#29b473;stop-opacity:1;"
+         offset="1"
+         id="stop2377" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient11349"
+       id="linearGradient11351-3"
+       x1="38.665379"
+       y1="78.18914"
+       x2="38.665379"
+       y2="41.860222"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2379"
+       id="linearGradient12924"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.64287853,0,0,0.64287853,64.995462,78.995874)"
+       x1="87.206787"
+       y1="104.65303"
+       x2="87.206787"
+       y2="142.79268" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g20557"
+       transform="translate(-1.9841001,-10.034653)"
+       inkscape:export-filename="vp_logo_2048.png"
+       inkscape:export-xdpi="279.62619"
+       inkscape:export-ydpi="279.62619">
+      <text
+         xml:space="preserve"
+         style="font-size:25.5142px;font-family:Impact;-inkscape-font-specification:Impact;fill:url(#linearGradient12924);fill-opacity:1;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         x="41.86274"
+         y="166.0741"
+         id="text236-4"><tspan
+           sodipodi:role="line"
+           id="tspan234-0"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Bold';fill:url(#linearGradient12924);fill-opacity:1;stroke-width:0;stroke-dasharray:none"
+           x="41.86274"
+           y="166.0741">VATPlayback</tspan></text>
+      <path
+         sodipodi:type="star"
+         style="fill:none;fill-opacity:1;stroke:url(#linearGradient11351-3);stroke-width:3.01465;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         id="path10524-6"
+         inkscape:flatsided="true"
+         sodipodi:sides="3"
+         sodipodi:cx="33.639091"
+         sodipodi:cy="60.03643"
+         sodipodi:r1="20.138845"
+         sodipodi:r2="10.069423"
+         sodipodi:arg1="0"
+         sodipodi:arg2="1.0471976"
+         inkscape:rounded="-3.469447e-18"
+         inkscape:randomized="0.004"
+         d="M 53.764238,60.051816 23.567087,77.47739 23.566592,42.571971 Z"
+         inkscape:transform-center-x="-3.3128678"
+         inkscape:transform-center-y="0.019866503"
+         transform="matrix(0.66342773,0,0,-0.66342773,-0.66623321,198.35669)" />
+    </g>
+  </g>
+</svg>

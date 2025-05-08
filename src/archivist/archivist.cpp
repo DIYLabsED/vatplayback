@@ -5,12 +5,15 @@
     (C) 2025 DIY Labs
     Licensed under GNU GPL V3
 
+    Wiki at https://github.com/DIYLabsED/VATPlayback/wiki
+
 */
 
 #include <iostream>
 #include <fstream>
 #include <csignal>
 #include <nlohmann/json.hpp>
+
 
 using json = nlohmann::json;
 using namespace std;
