@@ -157,7 +157,7 @@ void printHelp(){
 
 void printVersion(){
 
-    cout << "VATPlayback Archivist version" << VP_VERSION << "\n"
-         << "nlohmann/json version\n" << NLOHMANN_JSON_VERSION_MAJOR << "." << NLOHMANN_JSON_VERSION_MINOR << "." << NLOHMANN_JSON_VERSION_PATCH << "\n";
+    cout << "VATPlayback Archivist version " << VP_VERSION << "\n"
+         << "JSON library version " << NLOHMANN_JSON_VERSION_MAJOR << "." << NLOHMANN_JSON_VERSION_MINOR << "." << NLOHMANN_JSON_VERSION_PATCH << "\n";
 
 }
