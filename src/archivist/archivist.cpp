@@ -18,6 +18,7 @@
 using json = nlohmann::json;
 using namespace std;
 
+
 struct VP_CONFIG{
 
     string apiURL = "https://data.vatsim.net/v3/vatsim-data.json";
@@ -32,22 +33,45 @@ const string VP_VERSION = "1.0.0";
 
 VP_CONFIG globalConfig;
 
+
 void safeExit(int s);
 bool readConfigFile(string fp, VP_CONFIG *outConfig);
 bool createConfigFile(string fp, VP_CONFIG inputConfig);  
 void setup();
-void processArguments(int argc, char *argv[]);
 void printHelp();
+void printVersion();
 
 
 
 int main(int argc, char *argv[]){
 
     setup();
+    
+    if(argc == 1){ // No arguments 
 
-    processArguments(argc, argv);
+        cout << "No arguments provided. Use -h or --help for help.\n";
+        safeExit(SIGINT);
 
-    return 0;
+     }
+
+     if(strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0){
+    
+        printHelp();
+        safeExit(SIGINT);
+        return 0;
+        
+    }    
+     
+    else if(strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0){
+
+        printVersion();
+        safeExit(SIGINT);
+        return 0;
+        
+    }         
+
+    safeExit(SIGINT);
+    return 0; // Should never reach here, unless safeExit fails
 
 }
 
@@ -123,21 +147,17 @@ void setup(){
 
 }
 
-void processArguments(int argc, char *argv[]){
-
-    if (argc < 2){  // No args, print help and exit
-        printHelp();
-        safeExit(SIGINT);
-    }
-    
-}
-
 void printHelp(){
 
     cout << "Command list:\n"
          << "-h, --help: Print help message\n"
-         << "-v, --version: Print version information\n"
-         << "-r, --record: Record VATSIM network traffic\n"
-         << "-c, --config <config file path>: Specify config file. Uses \"" + VP_DEFAULT_CONFIG_PATH + "\" by default.\n";
+         << "-v, --version: Print version information\n";
+
+}
+
+void printVersion(){
+
+    cout << "VATPlayback Archivist version" << VP_VERSION << "\n"
+         << "nlohmann/json version\n" << NLOHMANN_JSON_VERSION_MAJOR << "." << NLOHMANN_JSON_VERSION_MINOR << "." << NLOHMANN_JSON_VERSION_PATCH << "\n";
 
 }
