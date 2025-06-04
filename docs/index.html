@@ -1,1 +1,177 @@
-Hello, world!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VP Archive Viewer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Custom styles for the drag-drop area */
+        .drop-area {
+            transition: all 0.2s ease-in-out;
+        }
+        .drop-area.highlight {
+            border-color: #29B473; /* Custom Phosphor Green */
+            background-color: #000000; /* Pure black for highlight background */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'phosphor-green': {
+                            DEFAULT: '#29B473',
+                            'dark': '#249c61', /* Slightly darker for hover */
+                            'light': '#38d38e', /* Slightly lighter for ring focus */
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center p-4">
+
+    <header class="mb-8">
+        <img src="assets/images/vp_logo_2048.png" alt="VATPlayback Logo" class="h-16 md:h-24 w-auto object-contain">
+    </header>
+
+    <main class="w-full max-w-xl bg-black rounded-lg shadow-xl p-5 md:p-7 flex flex-col items-center">
+        <h1 class="text-2xl md:text-3xl font-bold mb-6 text-center">Upload Your .vparch File</h1>
+
+        <!-- File Upload Area -->
+        <div id="drop-area" class="drop-area flex flex-col items-center justify-center w-full p-7 border-4 border-solid border-gray-700 rounded-lg cursor-pointer shadow-lg hover:border-phosphor-green transition-all duration-200 ease-in-out">
+            <input type="file" id="fileInput" class="hidden" accept=".vparch">
+            <!-- Removed the SVG icon for uploading files -->
+            <p class="text-lg text-gray-300 font-semibold mb-2 text-center">Drag & Drop your .vparch file here</p>
+            <p class="text-sm text-gray-400 text-center">or</p>
+            <button id="browseButton" class="mt-4 px-6 py-3 bg-phosphor-green text-white font-semibold rounded-md shadow-lg hover:bg-phosphor-green-dark focus:outline-none focus:ring-2 focus:ring-phosphor-green-light focus:ring-opacity-75 transition-colors duration-200 ease-in-out">
+                Browse Files
+            </button>
+            <p id="fileNameDisplay" class="mt-4 text-gray-400 text-sm italic"></p>
+        </div>
+
+        <!-- New "View archive" button, moved outside the drop-area -->
+        <button id="viewArchiveButton" class="mt-6 px-8 py-4 bg-phosphor-green text-white text-xl font-bold rounded-lg shadow-lg hover:bg-phosphor-green-dark focus:outline-none focus:ring-4 focus:ring-phosphor-green-light focus:ring-opacity-75 transition-colors duration-200 ease-in-out hidden">
+            View archive
+        </button>
+
+        <div id="messageBox" class="mt-6 p-4 bg-red-800 text-white rounded-md hidden"></div>
+    </main>
+
+    <footer class="mt-8 text-gray-500 text-sm text-center">
+        <p>Hosted with <a href="https://pages.github.com" class="text-phosphor-green hover:underline" target="_blank" rel="noopener noreferrer">GitHub Pages</a>. Source code available on <a href="https://github.com/DIYLabsED/vatplayback" class="text-phosphor-green hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    </footer>
+
+    <script>
+        // Get references to elements
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('fileInput');
+        const browseButton = document.getElementById('browseButton');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const viewArchiveButton = document.getElementById('viewArchiveButton');
+        const messageBox = document.getElementById('messageBox');
+
+        // Function to show messages (for errors)
+        function showMessage(message, isError = false) {
+            if (isError) {
+                messageBox.textContent = message;
+                messageBox.classList.remove('hidden');
+                messageBox.classList.remove('bg-phosphor-green'); // Ensure green success background is removed for errors
+                messageBox.classList.add('bg-red-800');
+            } else {
+                // For success, we now show the button instead of a message in messageBox
+                hideMessage(); // Ensure messageBox is hidden
+            }
+        }
+
+        // Function to hide messages (and the view archive button)
+        function hideMessage() {
+            messageBox.classList.add('hidden');
+            viewArchiveButton.classList.add('hidden'); // Hide the view archive button
+            fileNameDisplay.textContent = ''; // Clear file name display
+        }
+
+        // Handle file selection (from input or drag-drop)
+        function handleFiles(files) {
+            hideMessage(); // Hide any previous messages/buttons
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.name.endsWith('.vparch')) {
+                    fileNameDisplay.textContent = `Selected file: ${file.name}`;
+                    viewArchiveButton.classList.remove('hidden'); // Show the "View archive" button
+                    // In a real application, you would now read and process this file.
+                    // Example:
+                    // const reader = new FileReader();
+                    // reader.onload = (e) => {
+                    //     const fileContent = e.target.result;
+                    //     console.log("File content (for .vparch):", fileContent);
+                    //     // Call your display-vparch.js logic here
+                    // };
+                    // reader.readAsText(file); // Or readAsArrayBuffer for binary files
+                } else {
+                    fileNameDisplay.textContent = '';
+                    showMessage('Please upload a .vparch file.', true);
+                }
+            } else {
+                fileNameDisplay.textContent = '';
+                showMessage('No file selected.', true);
+            }
+        }
+
+        // Event listener for file input change (when user selects via browse)
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        // Event listener for browse button click
+        browseButton.addEventListener('click', () => {
+            fileInput.click(); // Programmatically click the hidden file input
+        });
+
+        // Drag and drop event listeners
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Highlight drop area when file is dragged over
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.classList.add('highlight'), false);
+        });
+
+        // Remove highlight when file leaves drop area
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.classList.remove('highlight'), false);
+        });
+
+        // Handle dropped files
+        dropArea.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }, false);
+
+        // Event listener for "View archive" button (currently does nothing)
+        viewArchiveButton.addEventListener('click', () => {
+            // This is where you would add logic to process and display the archive
+            console.log("View archive button clicked. Implement archive viewing logic here!");
+            // For now, you can add a temporary message or redirect
+            // showMessage("Loading archive...", false);
+        });
+    </script>
+</body>
+</html>
