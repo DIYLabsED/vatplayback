@@ -58,7 +58,7 @@ int main(int argc, char *argv[]){
 
      }
 
-    if(strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0){
+    if(strcmp(argv[1], "help") == 0){
     
         printHelp();
         safeExit(SIGINT);
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]){
         
     }    
      
-    else if(strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0){
+    else if(strcmp(argv[1], "version") == 0){
 
         printVersion();
         safeExit(SIGINT);
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]){
         
     }         
    
-    else if(strcmp(argv[1], "-r") == 0 || strcmp(argv[1], "--record") == 0){
+    else if(strcmp(argv[1], "record") == 0){
 
         record(globalConfig);
         safeExit(SIGINT); // record() should exit, this is a safety net
@@ -87,10 +87,9 @@ int main(int argc, char *argv[]){
 
 }
 
-
 void safeExit(int s){
     
-    cout << "\n\nSIGINT received. Exiting.\n";
+    cout << "\nExiting.";
     exit(0);
 
 }
@@ -170,8 +169,11 @@ void setup(){
 void printHelp(){
 
     cout << "Command list:\n"
-         << "-h, --help: Print help message\n"
-         << "-v, --version: Print version information\n";
+         << "help: Print help message\n"
+         << "version: Print version information\n"
+         << "record: Start recording VATSIM network data\n"
+         << "\n"
+         << "Flag list:\n";
 
 }
 
@@ -206,8 +208,7 @@ void record(VP_CONFIG cfg){
         }
 
         // Delay
-        this_thread::sleep_for(chrono::milliseconds(cfg.recordIntervalMS)); // Sleep for recordIntervalMS milliseconds
-
+        this_thread::sleep_for(chrono::milliseconds(cfg.recordIntervalMS)); 
     }
 
 }
